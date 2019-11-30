@@ -1,0 +1,74 @@
+[
+    {
+        "id": 5643686,
+        "name": "Carbon County",
+        "country": "US",
+        "coord": {
+            "lon": -109.067368,
+            "lat": 45.21661
+        }
+    },
+    {
+        "id": 5673092,
+        "name": "Rankin Place",
+        "country": "US",
+        "coord": {
+            "lon": -109.492393,
+            "lat": 45.261608
+        }
+    },
+    {
+        "id": 4047198,
+        "name": "Brighton",
+        "country": "US",
+        "coord": {
+            "lon": -86.947212,
+            "lat": 33.43428
+        }
+    },
+    {
+        "id": 4047734,
+        "name": "Ocean View",
+        "country": "US",
+        "coord": {
+            "lon": -75.089073,
+            "lat": 38.545109
+        }
+    },
+    {
+        "id": 4248205,
+        "name": "Riverton",
+        "country": "US",
+        "coord": {
+          "lon": -89.539543,
+          "lat": 39.844219
+        }
+      },
+      {
+        "id": 4248256,
+        "name": "Robinson",
+        "country": "US",
+        "coord": {
+          "lon": -87.739189,
+          "lat": 39.005322
+        }
+      },
+      {
+        "id": 4248284,
+        "name": "Rochester",
+        "country": "US",
+        "coord": {
+          "lon": -89.531761,
+          "lat": 39.749489
+        }
+      },
+      {
+        "id": 4248420,
+        "name": "Roodhouse",
+        "country": "US",
+        "coord": {
+          "lon": -90.371513,
+          "lat": 39.48394
+        }
+      }
+]
