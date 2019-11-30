@@ -1,12 +1,14 @@
 import React from 'react';
 import NavBarComponent from './components/navBar.js'
 
-function App() {
-  return (
-   <div>
-     <NavBarComponent />
-   </div>
-  );
+class App extends React.Component {
+  render(){
+    return (
+      <div>
+        <NavBarComponent />
+      </div>
+     );
+  }
 }
 
 export default App;
