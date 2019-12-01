@@ -14,10 +14,10 @@ class App extends React.Component {
   }
 
   async getWeatherInfo(e) {
-
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${e.target.value}&appid=${Api_Key}&cnt=5`);
     const response = await api_call.json();
     const data = response.list;
+    console.log(data);
     this.setState({
       data: data
     })
