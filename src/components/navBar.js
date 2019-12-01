@@ -10,7 +10,8 @@ class NavBarComponent extends React.Component {
                         <span className="navbar-brand mb-0 h1">Weather Forecast</span>
                     </div>
                     <div>
-                        <Form />
+                        <Form 
+                        handleChange = {this.props.handleChange}/>
                     </div>
                 </nav>
             </Fragment>

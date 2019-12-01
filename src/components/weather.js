@@ -1,22 +1,25 @@
 import React from 'react';
-const Api_Key = "b7cc7d16f6a2279175df66665d9e2aef";
-
-
 class Weather extends React.Component{
-    constructor(props){
-        super(props);
-
-    }
-
-    async componentDidUpdate(){
-        const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.props.city}&appid=${Api_Key}&cnt=5`);
-        const response = await api_call.json();
-        console.log(response);
-    }
-
     render(){
+        let data = this.props.data;
         return(
-            <div></div>
+            <div className="container">
+               {Object.keys(data).map((val, index)=>{
+                   return(
+                       <div className="row jumbotron" key={index}>
+                           <div className="col-sm">
+                               Temperature {data[index].main.temp}
+                            </div>
+                            <div className="col-sm">
+                               Min Temperature {data[index].main.temp_min}
+                            </div>
+                            <div className="col-sm">
+                               Max Temperature {data[index].main.temp_max}
+                            </div>
+                       </div>
+                   )
+               })}
+            </div>
         )
     }
 }
