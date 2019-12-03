@@ -6,3 +6,27 @@
   float:left;
   margin-right: 10px;
 }
+
+.row-container{
+  border: 2px solid black;
+  padding: 20px;
+  margin: 25px;
+}
+
+.col-sm{
+  text-align: center;
+}
+
+.center-div{
+  padding: 70px;
+}
+
+.search{
+  margin-left: 750px;
+}
+
+.form-control:focus {
+  outline: 0 !important;
+  border-color: initial;
+  box-shadow: none;
+}

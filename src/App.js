@@ -9,17 +9,35 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: '',
+      imgUrl: '',
+      bookmark: '',
+      bookmarkObj : {}
     }
     this.getWeatherInfo = this.getWeatherInfo.bind(this);
+    this.handleBookmark = this.handleBookmark.bind(this);
+    this.updateBookmarkObj = this.updateBookmarkObj.bind(this);
   }
 
   async getWeatherInfo(e) {
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${e.target.value}&appid=${Api_Key}&cnt=5`);
+    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${e.target.value},us&appid=${Api_Key}&units=imperial`);
     const response = await api_call.json();
     const data = response.list;
     console.log(data);
+
     this.setState({
-      data: data
+      data
+    })
+  }
+
+  updateBookmarkObj(){
+    this.setState({
+      bookmarkObj: JSON.parse(localStorage.getItem("bookmark"))
+    })
+  }
+  
+  handleBookmark(value){
+    this.setState({
+      bookmark : value
     })
   }
 
@@ -27,9 +45,14 @@ class App extends React.Component {
     return (
       <div>
         <NavBarComponent
-          handleChange={this.getWeatherInfo} />
-        <Weather 
-        data = {this.state.data}
+          handleChange={this.getWeatherInfo} 
+          bookmark = {this.state.bookmark}
+          handleBookmark = {this.handleBookmark}
+          updateBookmarkObj = {this.updateBookmarkObj}
+          bookmarkObj = {this.state.bookmarkObj}
+          />
+        <Weather
+          data={this.state.data}
         />
       </div>
     );

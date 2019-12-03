@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import Form from './userForm'
+import Form from './userForm';
+import SearchBox from './searchBox';
 
 class NavBarComponent extends React.Component {
     render() {
@@ -9,14 +10,23 @@ class NavBarComponent extends React.Component {
                     <div>
                         <span className="navbar-brand mb-0 h1">Weather Forecast</span>
                     </div>
-                    <div>
-                        <Form 
-                        handleChange = {this.props.handleChange}/>
+                    <div className="search">
+                       <SearchBox 
+                       bookmark = {this.props.bookmark}
+                       handleBookmark = {this.props.handleBookmark}
+                       updateBookmarkObj = {this.props.updateBookmarkObj}
+                       />
                     </div>
+                        <div>
+                            <Form
+                                bookmarkObj = {this.props.bookmarkObj}
+                                handleChange={this.props.handleChange} 
+                            />
+                        </div>
                 </nav>
             </Fragment>
-        )
-    }
-}
-
+                )
+            }
+        }
+        
 export default NavBarComponent;
