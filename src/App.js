@@ -18,14 +18,20 @@ class App extends React.Component {
     this.updateBookmarkObj = this.updateBookmarkObj.bind(this);
   }
 
-  async getWeatherInfo(e) {
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${e.target.value},us&appid=${Api_Key}&units=imperial`);
+  async getWeatherInfo(city) {
+    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${Api_Key}&units=imperial`);
     const response = await api_call.json();
     const data = response.list;
     console.log(data);
 
     this.setState({
       data
+    })
+  }
+
+  componentWillMount(){
+    this.setState({
+      bookmarkObj: JSON.parse(localStorage.getItem("bookmark"))
     })
   }
 

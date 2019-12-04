@@ -8,7 +8,7 @@ class Form extends React.Component {
         return (
             <section className="container">
                 <div className="select-menu-right">
-                    <select className="form-control" name="type" id="city" onChange={this.props.handleChange}>
+                    <select className="form-control" name="type" id="city" onChange={(e)=>this.props.handleChange(e.target.value)}>
                         <option key='first' value='default'>Select City</option>
                         {
                             bookmarked ? Object.keys(bookmarked).map(function (key) {

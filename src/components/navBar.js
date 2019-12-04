@@ -15,6 +15,7 @@ class NavBarComponent extends React.Component {
                        bookmark = {this.props.bookmark}
                        handleBookmark = {this.props.handleBookmark}
                        updateBookmarkObj = {this.props.updateBookmarkObj}
+                       handleChange = {this.props.handleChange}
                        />
                     </div>
                         <div>
