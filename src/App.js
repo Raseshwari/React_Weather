@@ -1,6 +1,8 @@
 import React from 'react';
 import NavBarComponent from './components/navBar.js';
 import Weather from './components/weather.js';
+var moment = require('moment');
+
 const Api_Key = "b7cc7d16f6a2279175df66665d9e2aef";
 
 class App extends React.Component {
@@ -16,18 +18,35 @@ class App extends React.Component {
     this.getWeatherInfo = this.getWeatherInfo.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
     this.updateBookmarkObj = this.updateBookmarkObj.bind(this);
+    // this.formatData = this.formatData.bind(this);
   }
 
   async getWeatherInfo(city) {
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${Api_Key}&units=imperial`);
     const response = await api_call.json();
     const data = response.list;
-    console.log(data);
+
+    let fiveDayData;
+    if(data){
+      fiveDayData = data.filter(function(dataitem){
+        let temp = moment(dataitem.dt_txt).format('YYYY ddd MMM DD HH:mm A');
+        let split = temp.split(' ');
+        if(split[4]=='12:00'){
+          return dataitem
+        }
+      })
+    }
 
     this.setState({
-      data
+      data: fiveDayData
     })
   }
+
+  // formatData(){
+  //   let data = this.state.data;
+   
+  //   console.log(fiveDayData)
+  // }
 
   componentWillMount(){
     this.setState({
@@ -48,6 +67,7 @@ class App extends React.Component {
   }
 
   render() {
+    // this.formatData()
     return (
       <div>
         <NavBarComponent

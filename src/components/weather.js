@@ -35,7 +35,7 @@ class Weather extends React.Component {
                         <div className="row row-container" key={index}>
                             <div className="col-sm">
                                 <div>
-                                    {moment(data[index].dt_txt).format('dddd, MMMM D')}
+                                    {moment(data[index].dt_txt).format('YYYY ddd MMM DD HH:mm A')}
                                 </div>
                                 <div>
                                     <img className="weather-icon" src={this.getImageUrl(data[index].weather[0].main)} />
