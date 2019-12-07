@@ -14,46 +14,58 @@ class App extends React.Component {
       imgUrl: '',
       bookmark: '',
       bookmarkObj: {},
-      isCityValid: false
+      isCityInValid: false
     }
     this.getWeatherInfo = this.getWeatherInfo.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
     this.updateBookmarkObj = this.updateBookmarkObj.bind(this);
-    // this.formatData = this.formatData.bind(this);
+    this.toggleCity = this.toggleCity.bind(this);
   }
 
   async getWeatherInfo(city) {
     let isCity = city.match(/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/);
-    console.log(isCity)
 
     if (isCity) {
-      const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Api_Key}&units=imperial`);
-      const response = await api_call.json();
-      const data = response.list;
-      console.log(data);
+      try {
+        const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Api_Key}&units=imperial`);
+        const response = await api_call.json();
+        
+        if(response.cod!=="200"){
+          throw Error("error")
+        }
 
-      let fiveDayData;
-      if (data) {
-        fiveDayData = data.filter(function (dataitem) {
-          let temp = moment(dataitem.dt_txt).format('YYYY ddd MMM DD HH:mm A');
-          let split = temp.split(' ');
-          if (split[4] == '12:00') {
-            return dataitem
-          }
-        })
+        const data = response.list;
+        console.log(data);
+
+        let fiveDayData;
+        if (data) {
+          fiveDayData = data.filter(function (dataitem) {
+            let temp = moment(dataitem.dt_txt).format('YYYY ddd MMM DD HH:mm A');
+            let split = temp.split(' ');
+            if (split[4] == '12:00') {
+              return dataitem
+            }
+          })
+          this.setState({
+            data: fiveDayData
+          })
+        }
+
+      } catch (e) {
+        this.toggleCity();
       }
-
-      this.setState({
-        data: fiveDayData
-      })
-    }else{
-     
     }
   }
 
-  componentWillMount() {
+  toggleCity(){
     this.setState({
-      bookmarkObj: JSON.parse(localStorage.getItem("bookmark"))
+      isCityInValid: !this.state.isCityInValid
+    })
+  }
+
+  componentDidMount() {
+    this.setState({
+      bookmarkObj: JSON.parse(localStorage.getItem("bookmark")),
     })
   }
 
@@ -71,6 +83,7 @@ class App extends React.Component {
 
   render() {
     // this.formatData()
+    console.log(this.state.isCityInValid)
     return (
       <div>
         <NavBarComponent
@@ -79,6 +92,8 @@ class App extends React.Component {
           handleBookmark={this.handleBookmark}
           updateBookmarkObj={this.updateBookmarkObj}
           bookmarkObj={this.state.bookmarkObj}
+          isCityInValid={this.state.isCityInValid}
+          toggleCity={this.toggleCity}
         />
         <Weather
           data={this.state.data}

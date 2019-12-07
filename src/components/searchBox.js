@@ -35,6 +35,9 @@ class SearchBox extends React.Component {
     }
 
     handleSearchSubmit() {
+        if(this.props.isCityInValid){
+            this.props.toggleCity();
+        }
         this.props.handleChange(this.state.input);
     }
 
