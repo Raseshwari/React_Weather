@@ -13,7 +13,8 @@ class App extends React.Component {
       data: '',
       imgUrl: '',
       bookmark: '',
-      bookmarkObj : {}
+      bookmarkObj: {},
+      isCityValid: false
     }
     this.getWeatherInfo = this.getWeatherInfo.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
@@ -22,47 +23,49 @@ class App extends React.Component {
   }
 
   async getWeatherInfo(city) {
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${Api_Key}&units=imperial`);
-    const response = await api_call.json();
-    const data = response.list;
+    let isCity = city.match(/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/);
+    console.log(isCity)
 
-    let fiveDayData;
-    if(data){
-      fiveDayData = data.filter(function(dataitem){
-        let temp = moment(dataitem.dt_txt).format('YYYY ddd MMM DD HH:mm A');
-        let split = temp.split(' ');
-        if(split[4]=='12:00'){
-          return dataitem
-        }
+    if (isCity) {
+      const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Api_Key}&units=imperial`);
+      const response = await api_call.json();
+      const data = response.list;
+      console.log(data);
+
+      let fiveDayData;
+      if (data) {
+        fiveDayData = data.filter(function (dataitem) {
+          let temp = moment(dataitem.dt_txt).format('YYYY ddd MMM DD HH:mm A');
+          let split = temp.split(' ');
+          if (split[4] == '12:00') {
+            return dataitem
+          }
+        })
+      }
+
+      this.setState({
+        data: fiveDayData
       })
+    }else{
+     
     }
-
-    this.setState({
-      data: fiveDayData
-    })
   }
 
-  // formatData(){
-  //   let data = this.state.data;
-   
-  //   console.log(fiveDayData)
-  // }
-
-  componentWillMount(){
+  componentWillMount() {
     this.setState({
       bookmarkObj: JSON.parse(localStorage.getItem("bookmark"))
     })
   }
 
-  updateBookmarkObj(){
+  updateBookmarkObj() {
     this.setState({
       bookmarkObj: JSON.parse(localStorage.getItem("bookmark"))
     })
   }
-  
-  handleBookmark(value){
+
+  handleBookmark(value) {
     this.setState({
-      bookmark : value
+      bookmark: value
     })
   }
 
@@ -71,12 +74,12 @@ class App extends React.Component {
     return (
       <div>
         <NavBarComponent
-          handleChange={this.getWeatherInfo} 
-          bookmark = {this.state.bookmark}
-          handleBookmark = {this.handleBookmark}
-          updateBookmarkObj = {this.updateBookmarkObj}
-          bookmarkObj = {this.state.bookmarkObj}
-          />
+          handleChange={this.getWeatherInfo}
+          bookmark={this.state.bookmark}
+          handleBookmark={this.handleBookmark}
+          updateBookmarkObj={this.updateBookmarkObj}
+          bookmarkObj={this.state.bookmarkObj}
+        />
         <Weather
           data={this.state.data}
         />

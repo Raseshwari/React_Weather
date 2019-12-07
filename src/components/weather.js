@@ -8,22 +8,7 @@ class Weather extends React.Component {
     }
 
     getImageUrl(weather){
-        let imgUrl = '';
-        switch (weather) {
-          case "Snow":
-            imgUrl = '/img/snow.png'
-            break;
-          case "Clouds":
-            imgUrl = '/img/clouds.png'
-            break;
-          case "Clear":
-            imgUrl = '/img/sunny.png'
-            break;
-          case "Rain":
-            imgUrl = "/img/rains.png";
-            break;
-        }
-        return imgUrl;
+        return `http://openweathermap.org/img/w/${weather}.png`;
     }
 
     render() {
@@ -35,10 +20,10 @@ class Weather extends React.Component {
                         <div className="row row-container" key={index}>
                             <div className="col-sm">
                                 <div>
-                                    {moment(data[index].dt_txt).format('YYYY ddd MMM DD HH:mm A')}
+                                    {moment(data[index].dt_txt).format('YYYY ddd MMM DD')}
                                 </div>
                                 <div>
-                                    <img className="weather-icon" src={this.getImageUrl(data[index].weather[0].main)} />
+                                    <img className="weather-icon" src={this.getImageUrl(data[index].weather[0].icon)} />
                                 </div>
                                 <div>
                                     {data[index].weather[0].description}
@@ -47,18 +32,18 @@ class Weather extends React.Component {
                             <div className="col-sm">
                                 <div className="center-div">
                                     <div className="float-outer">
-                                        High: {data[index].main.temp_min}
+                                        High: {data[index].main.temp_min}°F
                                     </div>
                                     <div className="float-inner">
-                                        Low: {data[index].main.temp_max}
+                                        Low: {data[index].main.temp_max}°F
                                     </div>
                                 </div>
                             </div>
                             <div className="col-sm center-div">
-                                Wind Speed: {data[index].wind.speed}
+                                Wind Speed: {data[index].wind.speed}mph
                             </div>
                             <div className="col-sm center-div">
-                                Humidity: {data[index].main.humidity}
+                                Humidity: {data[index].main.humidity}%
                             </div>
                         </div>
                     )
