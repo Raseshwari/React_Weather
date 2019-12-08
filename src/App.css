@@ -40,3 +40,16 @@
   font-family: 'Handlee', cursive;
   font-size: 1.5em;
 }
+
+.errorBox{
+  margin: 0px auto;
+  border: 2px solid black;
+  width: 500px;
+  padding: 25px;
+  text-align: center;
+  margin-top: 25px;
+  color: red;
+  font-family: 'Handlee', cursive;
+  font-size: 1.2em;
+  background-color:snow;
+}

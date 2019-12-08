@@ -10,9 +10,9 @@ class NavBarComponent extends React.Component {
                     <div>
                         <span className="navbar-brand mb-0 h1">Weather Forecast</span>
                     </div>
-                    {
-                        this.props.isCityInValid ? <div><p>Invalid City</p></div> : <div></div>
-                    }
+                    {/* {
+                        this.props.isCityInValid ? <div className="error">Invalid City</div> : <div></div>
+                    } */}
                     <div className="search">
                         <SearchBox
                             bookmark={this.props.bookmark}
@@ -20,7 +20,9 @@ class NavBarComponent extends React.Component {
                             updateBookmarkObj={this.props.updateBookmarkObj}
                             handleChange={this.props.handleChange}
                             isCityInValid={this.props.isCityInValid}
-                            toggleCity={this.props.toggleCity}
+                            toggleCityTrue={this.props.toggleCityTrue}
+                            toggleCityFalse={this.props.totoggleCityFalse}
+                            searchRef = {this.props.searchRef}
                         />
                     </div>
                     <div>
