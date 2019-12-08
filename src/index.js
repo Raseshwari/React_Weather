@@ -7,7 +7,7 @@ import './App.css'
 // import $ from 'jquery';
 // import Popper from 'popper.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
