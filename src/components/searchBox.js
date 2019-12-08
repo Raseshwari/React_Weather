@@ -48,23 +48,12 @@ class SearchBox extends React.Component {
     
     render() {
         return (
-            // <div className="input-group">
-            //     <input className="form-control py-2 border-right-0 border" ref={this.props.searchRef} type="search" id="example-search-input" onChange={this.handleInputChange} />
-            //     <span className="input-group-append">
-            //         <button className="btn btn-outline-secondary border-left-0 border" type="submit" onClick={this.handleSearchSubmit}>
-            //             <i className="fa fa-search"></i>
-            //         </button>
-            //         <button className="btn btn-outline-secondary border-left-0 border" type="submit" onClick={this.handleBookmark}>
-            //             <i className="fa fa-bookmark"></i>
-            //         </button>
-            //     </span>
-            // </div>
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="input-group">
                         <input type="text" className="form-control py-2 border-right-0 border" ref={this.textInput} />
                         <span className="input-group-append">
-                            <button className="btn btn-outline-secondary border-left-0 border">Submit</button>
+                            <button className="btn btn-outline-secondary border-left-0 border">Search</button>
                             <button className="btn btn-outline-secondary border-left-0 border" type="submit" onClick={this.handleBookmark}>
                                 <i className="fa fa-bookmark"></i>
                             </button>
