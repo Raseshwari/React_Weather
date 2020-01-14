@@ -30,7 +30,7 @@ class App extends React.Component {
     console.log("called", city)
     if (isCity) {
       try {
-        const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Api_Key}&units=imperial`);
+        const api_call = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Api_Key}&units=imperial`);
         const response = await api_call.json();
 
         if (response.cod !== "200") {
